@@ -26,3 +26,7 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
+Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+
+Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
+

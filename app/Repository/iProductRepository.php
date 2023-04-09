@@ -10,6 +10,10 @@
 
     public function getSingleProduct($id);
 
+    public function editProduct($id);
+
+    public function updateProduct($id, array $data);
+
   }
 
 
