@@ -21,6 +21,11 @@ use App\Models\Product;
       ]);
     }
 
+    public function getSingleProduct($id)
+    {
+      return Product::find($id);
+    }
+
   }
 
 

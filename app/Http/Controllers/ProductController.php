@@ -46,4 +46,9 @@ class ProductController extends Controller
 
         return redirect('/products');
     }
+
+    public function show($id) {
+        $product = $this->product->getSingleProduct($id);
+        return view('product.show')->with('product', $product);
+    }
 }

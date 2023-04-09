@@ -8,7 +8,7 @@
     
     public function createProduct(array $data);
 
-
+    public function getSingleProduct($id);
 
   }
 
