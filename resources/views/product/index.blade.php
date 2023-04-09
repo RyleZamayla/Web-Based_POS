@@ -18,7 +18,7 @@
                   <h5 class="card-title">Price: ₱ {{ $product->price }}</h5>
                   <hr>
                   <p class="card-text">{{ $product->description}} </p>
-                  <a href="" class="btn btn-primary">View Detail</a>
+                  <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">View Detail</a>
                 </div>
               </div>
             @endforeach

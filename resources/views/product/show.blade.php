@@ -18,8 +18,8 @@
                   <h3>Price: ${{ $product->price }}</h3>
                   <hr>
                   <p>{{ $product->description }}</p>
-                  <a href="" class="btn btn-success">Go Home</a>
-                  <a href="" class="btn btn-primary">Edit</a>
+                  <a href="{{ route('products.index') }}" class="btn btn-success">Go Home</a>
+                  <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                 </div>
               </div>
 
