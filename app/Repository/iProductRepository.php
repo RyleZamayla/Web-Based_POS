@@ -6,6 +6,10 @@
 
     public function getAllProducts();
     
+    public function createProduct(array $data);
+
+
+
   }
 
 

@@ -26,4 +26,24 @@ class ProductController extends Controller
     public function create () {
         return view('product.create');
     }
+
+    public function store(Request $request) {
+        $request->validate([
+            'picture' => 'required',
+            'title' => 'required',
+            'price' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        if($image =$request->file('picture')){
+            $name = time() . "." . $image->getClientOriginalName();
+            $image->move(public_path('images'), $name);
+            $data['picture'] = "$name";
+        }
+
+        $this->product->createProduct($data);
+
+        return redirect('/products');
+    }
 }

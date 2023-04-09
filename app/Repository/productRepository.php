@@ -11,6 +11,16 @@ use App\Models\Product;
       return Product::all();
     }
 
+    public function createProduct(array $data)
+    {
+      Product::insert([
+        'picture' => $data['picture'],
+        'title' => $data['title'],
+        'price' => $data['price'],
+        'description' => $data['description']
+      ]);
+    }
+
   }
 
 

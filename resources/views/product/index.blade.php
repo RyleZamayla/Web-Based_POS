@@ -12,10 +12,10 @@
         <div class="col-md-6" style="display:flex">
             @foreach ($products as $product)
             <div class="card m-2 p-2" style="width: 18rem;">
-                <img src="{{ $product->picture }}" class="card-img-top" alt="...">
+                <img src="images/{{ $product->picture }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ $product->title }}</h5>
-                  <h5 class="card-title">Price: ${{ $product->price }}</h5>
+                  <h5 class="card-title">Price: ₱ {{ $product->price }}</h5>
                   <hr>
                   <p class="card-text">{{ $product->description}} </p>
                   <a href="" class="btn btn-primary">View Detail</a>
