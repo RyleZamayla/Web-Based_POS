@@ -9,10 +9,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9" style="display:flex">
+        <div class="col-md-7" style="display:flex">
 
             <div class="container m-2 p-2">
-                <img src="/images/{{ $product->picture }}" height="450px" alt="...">
+                <center><img src="/images/{{ $product->picture }}" height="450px" alt="..."></center>
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
                   <h3>Price: ${{ $product->price }}</h3>
@@ -26,44 +26,41 @@
         </div>
 
 
-        <div class="col-md-3">
-            <h3>All Comments</h3>
-
-            <div class="comments p-2 m-2" style="background-color: rgba(211, 211, 211, 0.295)">
-                @foreach ($product->comments as $comment)
-                    <p>{{ $comment->comment }} <br> ( {{ $comment->rating }} )</p>
-                    <hr>
-                @endforeach
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <h3>All Comments</h3>
+                <div class="comments p-2 m-2" style="background-color: rgba(211, 211, 211, 0.295); max-height: 200px; overflow-y: auto;">
+                    @foreach ($product->comments as $comment)
+                        <p>{{ $comment->comment }} <br> ( {{ $comment->rating }} )</p>
+                        <hr>
+                    @endforeach
+                </div>
             </div>
+            <div class="col-md-12">
+                <h3>Add Comment...</h3>
+                <div class="container m-2 p-2">
 
+                    <form action="" method="POST">
+                        @csrf
 
-           <h3>Add Comment...</h3>
+                        <input type="hidden" id="id" name="id" value="{{ $product->id }}">
 
-           <div class="container m-2 p-2">
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter Comment">
+                        </div>
 
-            <form action="" method="POST">
-                @csrf
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="number" class="form-control" name="rating" id="rating" placeholder="Enter Rating">
+                        </div>
 
-                <input type="hidden" id="id" name="id" value="{{ $product->id }}">
+                            <button type="submit" id="addCommentBtn" class="btn btn-success">submit</button>
 
-                <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter Comment">
+                    </form>
+
                 </div>
-
-                <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="number" class="form-control" name="rating" id="rating" placeholder="Enter Rating">
-                </div>
-
-                  <button type="submit" id="addCommentBtn" class="btn btn-success">comment</button>
-
-            </form>
-
-           </div>
-
-
-
+            </div>
         </div>
     </div>
 </div>
@@ -90,11 +87,4 @@
             },
             error: function(error) {
                 console.log(error.responseJSON.errors.comment);
-                console.log(error.responseJSON.errors.rating);
-            }
-        });
-    });
-</script>
-
-@endsection
-
+                console.log(error.responseJSON.errors.rating
