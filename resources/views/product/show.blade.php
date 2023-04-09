@@ -17,21 +17,21 @@
                   <h2>{{ $product->title }}</h2>
                   <h3>Price: ${{ $product->price }}</h3>
                   <hr>
-                  <p>{{ $product->description }}</p>
+                  <h5>{{ $product->description }}</h5>
                   <a href="{{ route('products.index') }}" class="btn btn-success">Go Home</a>
                   <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                 </div>
-              </div>
+            </div>
 
         </div>
 
 
-        {{-- <div class="col-md-3">
+        <div class="col-md-3">
             <h3>All Comments</h3>
 
-            <div class="comments p-2 m-2" style="background-color: rgb(232, 251, 246)">
+            <div class="comments p-2 m-2" style="background-color: rgba(211, 211, 211, 0.295)">
                 @foreach ($product->comments as $comment)
-                    <h5>{{ $comment->comment }} ( {{ $comment->rating }} )</h5>
+                    <p>{{ $comment->comment }} <br> ( {{ $comment->rating }} )</p>
                     <hr>
                 @endforeach
             </div>
@@ -64,9 +64,37 @@
 
 
 
-        </div> --}}
+        </div>
     </div>
 </div>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+        }
+    })
+
+    $("#addCommentBtn").click(function(e){
+        //e.preventDefault();
+        var comment = $('#comment').val();
+        var rating =  $('#rating').val();
+        var id = $('#id').val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {comment:comment, rating:rating, _token: '{{ csrf_token() }}'},
+            url: "/products/"+$id,
+            success: function(data) {
+                console.log('Added Comment');
+            },
+            error: function(error) {
+                console.log(error.responseJSON.errors.comment);
+                console.log(error.responseJSON.errors.rating);
+            }
+        });
+    });
+</script>
 
 @endsection
 

@@ -2,7 +2,7 @@
 
   namespace App\Repository;
 
-use App\Models\Product;
+  use App\Models\Product;
 
   class productRepository implements iProductRepository {
 
