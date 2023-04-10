@@ -20,7 +20,13 @@
 
     public function adminDeleteProduct($id)
     {
-      return Product::find($id)->delete();
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+            return "Product soft deleted successfully.";
+        } else {
+            return "Product not found.";
+        }
     }
 
     public function adminDeleteComment($id)

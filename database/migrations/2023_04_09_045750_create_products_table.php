@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->double('price');
             $table->longText('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
