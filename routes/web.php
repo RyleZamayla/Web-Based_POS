@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +22,12 @@ Route::get('/', function () {
 });
 
 // admin routes
-Route::get('admin/products', [AdminController::class, 'adminGetAllProducts'])->name('admin.products');
-Route::get('admin/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.products.comments');
-Route::delete('admin/products/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.products.delete');
-Route::delete('admin/products/comments/{id}', [AdminController::class, 'adminDeleteComment'])->name('admin.products.comments.delete');
-
+Route::prefix('admin')->middleware('auth', 'checkAdmin')->group(function() {
+    Route::get('/products', [AdminController::class, 'adminGetAllProducts'])->name('admin.products');
+    Route::get('/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.products.comments');
+    Route::delete('/products/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.products.delete');
+    Route::delete('/products/comments/{id}', [AdminController::class, 'adminDeleteComment'])->name('admin.products.comments.delete');
+});
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -39,3 +41,7 @@ Route::post('/products/update/{id}', [ProductController::class, 'update'])->name
 //comment routes
 Route::post('/products/{id}', [CommentController::class, 'addComment'])->name('products.comment.add');
 
+
+Auth::routes();
+
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'index'])->name('products.index');
