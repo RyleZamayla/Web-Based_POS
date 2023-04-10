@@ -19,7 +19,7 @@
                     <img src="images/{{ $product->picture }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{ $product->title }}</h5>
-                      <h5 class="card-title" style="color: #007bff;">Price: ₱ {{ $product->price }}</h5>
+                      <h5 class="card-title" style="color: #007bffa8;">Price: ₱ {{ $product->price }}</h5>
                       <hr style="border-color: #ccc;">
                       <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #555;">{{ $product->description }} </p>
                       <div class="card-footer" style="width:94%; text-align:right; position: absolute; bottom: 0; right: 0; margin: 10px;">

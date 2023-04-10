@@ -18,6 +18,15 @@
       return Comment::all();
     }
 
+    public function adminDeleteProduct($id)
+    {
+      return Product::find($id)->delete();
+    }
+
+    public function adminDeleteComment($id)
+    {
+      return Comment::find($id)->delete();
+    }
     
 
   }

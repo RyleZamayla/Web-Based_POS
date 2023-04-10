@@ -26,14 +26,14 @@
                                 <th>{{ $comment->id }}</th>
                                 <td>{{ $comment->comment }}</td>
                                 <td>{{ $comment->rating }}</td>
-                                {{-- <td><a href="{{ route('product.show', $comment->product_id)}}" class="btn btn-primary">View Product</a></td>
+                                <td><a href="{{ route('products.show', $comment->product_id)}}" class="btn btn-primary">View Product</a></td>
                                 <td>
-                                    <form action="{{ route('admin.comment.delete', $comment->id)}}" method="POST">
+                                    <form action="{{ route('admin.products.comments.delete', $comment->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

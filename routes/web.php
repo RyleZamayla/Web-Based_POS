@@ -23,6 +23,8 @@ Route::get('/', function () {
 // admin routes
 Route::get('admin/products', [AdminController::class, 'adminGetAllProducts'])->name('admin.products');
 Route::get('admin/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.products.comments');
+Route::delete('admin/products/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.products.delete');
+Route::delete('admin/products/comments/{id}', [AdminController::class, 'adminDeleteComment'])->name('admin.products.comments.delete');
 
 
 

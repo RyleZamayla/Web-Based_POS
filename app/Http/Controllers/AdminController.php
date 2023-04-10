@@ -23,4 +23,14 @@ class AdminController extends Controller
         return view('admin.comments')->with('comments', $comments);
     }
 
+    public function adminDeleteProduct($id) {
+        $this->admin->adminDeleteProduct($id);
+        return redirect('admin/products');
+    }
+
+    public function adminDeleteComment($id) {
+        $this->admin->adminDeleteComment($id);
+        return redirect('admin/products/comments');
+    }
+
 }

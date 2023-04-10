@@ -26,16 +26,16 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
-                                {{-- <td><a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Edit</a></td>
-                                <td><a href="{{ route('product.show', $product->id)}}" class="btn btn-secondary">View</a></td>
-                                <td><a href="{{ route('product.create')}}" class="btn btn-info">Create</a></td>
+                                <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary">Edit</a></td>
+                                <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-success">View</a></td>
+                                <td><a href="{{ route('products.create')}}" class="btn btn-warning">Create</a></td>
                                 <td>
-                                    <form action="{{ route('admin.product.delete', $product->id)}}" method="POST">
+                                    <form action="{{ route('admin.products.delete', $product->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

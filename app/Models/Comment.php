@@ -9,13 +9,11 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'productID';
-
     protected $fillable = [
         'product_id', 'comment', 'rating'
     ];
 
     public function product () {
-        return $this->belongsTo(Product::class, 'productID', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }
