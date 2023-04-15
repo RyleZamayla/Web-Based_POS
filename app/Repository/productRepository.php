@@ -13,7 +13,7 @@
 
     public function createProduct(array $data)
     {
-      Product::insert([
+      Product::create([
         'picture' => $data['picture'],
         'title' => $data['title'],
         'price' => $data['price'],
@@ -31,15 +31,20 @@
       return Product::find($id);
     }
 
+    // ProductRepository.php
+
     public function updateProduct($id, array $data)
     {
-      Product::find($id)->update([
-        'picture' => $data['picture'],
-        'title' => $data['title'],
-        'price' => $data['price'],
-        'description' => $data['description']
-      ]);
+        Product::find($id)->update([
+            'picture' => $data['picture'],
+            'title' => $data['title'],
+            'price' => $data['price'],
+            'description' => $data['description'],
+            'created_at' => $data['created_at']
+        ]);
     }
+
+
 
   }
 

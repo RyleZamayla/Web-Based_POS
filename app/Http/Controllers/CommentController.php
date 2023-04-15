@@ -22,13 +22,13 @@ class CommentController extends Controller
             'rating' => 'required'
         ]);
 
-        $data =  Comment::insert([
+        $data =  Comment::create([
             'product_id' => $id,
             'comment' => $request->comment,
             'rating' => $request->rating,
         ]);
 
-        
+
         $product = $this->product->getSingleProduct($id);
         return view('product.show')->with('product', $product);
 

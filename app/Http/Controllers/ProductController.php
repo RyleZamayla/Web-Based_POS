@@ -14,8 +14,6 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-        
-
     public function index () {
 
         $products = $this->product->getAllProducts();

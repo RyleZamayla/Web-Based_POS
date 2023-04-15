@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('picture');
+            $table->binary('picture'); // Update column definition to use binary method for BLOB
             $table->string('title');
             $table->double('price');
             $table->longText('description');

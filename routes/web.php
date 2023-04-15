@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+
 
 Route::prefix('admin')->middleware('auth', 'checkAdmin')->group(function() {
     Route::get('/products', [AdminController::class, 'adminGetAllProducts'])->name('admin.products');

@@ -12,14 +12,15 @@
         <div class="col-md-7" style="display:flex">
 
             <div class="container m-2 p-2">
-                <center><img src="/images/{{ $product->picture }}" height="450px" alt="..."></center>
+                <center>
+                    <img src="{{ asset('images/' . $product->picture) }}" height="450px" alt="...">
+                </center>
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
                   <h3>Price: ₱ {{ $product->price }}</h3>
                   <hr>
                   <h5>{{ $product->description }}</h5>
                   <a href="{{ route('products.index') }}" class="btn btn-success">Go Home</a>
-                  <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
 
@@ -66,32 +67,41 @@
 </div>
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+    }
+});
+
+$("#addCommentBtn").click(function(e){
+    var comment = $('#comment').val();
+    var rating =  $('#rating').val();
+    var id = $('#id').val();
+
+    var data = {
+        comment: comment,
+        rating: rating,
+        created_at: new Date().toISOString(), // Set created_at
+        updated_at: new Date().toISOString(), // Set updated_at
+        _token: '{{ csrf_token() }}'
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        data: data,
+        url: "/products/" + id,
+        success: function(data) {
+            console.log('Added Comment');
+        },
+        error: function(error) {
+            console.log(error.responseJSON.errors.comment);
+            console.log(error.responseJSON.errors.rating);
         }
     });
+});
 
-    $("#addCommentBtn").click(function(e){
-
-        var comment = $('#comment').val();
-        var rating =  $('#rating').val();
-        var id = $('#id').val();
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            data: {comment:comment, rating:rating, _token: '{{csrf_token()}}'},
-            url: "/products/"+$id,
-            success: function(data) {
-                console.log('Added Comment');
-            },
-            error: function(error) {
-                console.log(error.responseJSON.errors.comment);
-                console.log(error.responseJSON.errors.rating);
-            }
-        });
-    });
 </script>
-    
+
 @endsection
 
