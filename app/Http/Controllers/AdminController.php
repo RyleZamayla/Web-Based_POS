@@ -39,4 +39,11 @@ class AdminController extends Controller
         return view('admin.users')->with('users', $users);
     }
 
+    public function toggleUser(Request $request, User $user)
+    {
+        $this->admin->adminToggleUser($user);
+
+        return redirect()->back()->with('success', 'User status updated.');
+    }
+
 }

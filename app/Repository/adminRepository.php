@@ -46,6 +46,12 @@
         }
     }
 
+    public function adminToggleUser(User $user)
+    {
+        $user->status = !$user->status;
+        $user->save();
+    }
+
 
   }
 

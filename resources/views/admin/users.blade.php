@@ -29,6 +29,15 @@
                                 <td>{{ $user->password }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>{{ $user->status }}</td>
+                                <td>
+                                    <form method="POST" action="{{ route('user.toggle', $user->id) }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-sm {{ $user->enabled ? 'btn-success' : 'btn-danger' }}">
+                                            {{ $user->status ? 'Disable' : 'Enable' }}
+                                        </button>
+                                    </form>
+                                </td>
                                 {{-- <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary">Edit</a></td>
                                 <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-success">View</a></td>
                                 <td><a href="{{ route('products.create')}}" class="btn btn-warning">Create</a></td>
