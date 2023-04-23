@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 
 Route::prefix('admin')->middleware('auth', 'checkAdmin')->group(function() {
+    Route::get('/users', [AdminController::class, 'adminGetAllUsers'])->name('user.user');
     Route::get('/products', [AdminController::class, 'adminGetAllProducts'])->name('admin.products');
     Route::get('/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.products.comments');
     Route::delete('/products/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.products.delete');

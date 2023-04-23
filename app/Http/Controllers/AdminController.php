@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repository\iAdminRepository;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,11 @@ class AdminController extends Controller
     public function adminDeleteComment($id) {
         $this->admin->adminDeleteComment($id);
         return redirect('admin/products/comments');
+    }
+
+    public function adminGetAllUsers(){
+        $users = $this->admin->adminGetAllUsers();
+        return view('admin.users')->with('users', $users);
     }
 
 }
