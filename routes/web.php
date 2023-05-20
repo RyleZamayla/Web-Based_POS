@@ -21,6 +21,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// admin
 
 Route::prefix('admin')->middleware('auth', 'checkAdmin')->group(function() {
     Route::get('/users', [AdminController::class, 'adminGetAllUsers'])->name('user.user');
@@ -38,9 +39,12 @@ Route::middleware('auth', 'checkAdmin')->group(function() {
     Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
 });
 
+//cashier
+
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::post('/products/{id}', [CommentController::class, 'addComment'])->name('products.comment.add');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 
 Auth::routes();
